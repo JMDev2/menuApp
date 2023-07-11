@@ -1,4 +1,4 @@
-package com.morarafrank.template
+package com.morarafrank.template.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,26 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
+import com.morarafrank.template.ui.navigation.MenusNavGraph
 import com.morarafrank.template.ui.theme.TemplateTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TemplateTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Greeting("Template")
-                    }
-                }
+                MenusNavGraph(navController = rememberNavController())
             }
         }
     }
